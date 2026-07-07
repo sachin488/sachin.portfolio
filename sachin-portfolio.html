@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sachin PJ — UI/UX & Visual Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+/* ───── LOADER ───── */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  text-align: center;
+  width: 420px;
+  padding: 0 24px;
+}
+
+.loader-logo {
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #3b82f6, #46ed3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Poppins', sans-serif;
+}
+
+.loader-skill {
+  font-size: 26px;
+  font-weight: 600;
+  color: white;
+  height: 40px;
+  margin-bottom: 30px;
+  transition: opacity 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.loader-skill.fade-out { opacity: 0; }
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #181818;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 100px;
+  background: linear-gradient(135deg, #3b82f6, #46ed3a);
+  transition: width 0.1s linear;
+}
+
+/* ───── MAIN SITE ───── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0a0a;
+  --bg2:       #111111;
+  --bg3:       #1a1a1a;
+  --blue:      #3b82f6;
+  --blue-lt:   #60a5fa;
+  --blue-glow: rgba(59,130,246,0.2);
+  --violet:    #7c3aed;
+  --violet-lt: #a78bfa;
+  --violet-glow: rgba(124,58,237,0.2);
+  --grad:      linear-gradient(135deg, #3b82f6 0%, #46ed3a 100%);
+  --grad-soft: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(124,58,237,0.12) 100%);
+  --border:    rgba(255,255,255,0.08);
+  --border-b:  rgba(255,255,255,0.05);
+  --text:      #f2f2f2;
+  --text2:     #8a8a9a;
+  --text3:     #484858;
+  --sans: 'Poppins', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 0 48px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  background: var(--grad);
+  color: #fff;
+  padding: 9px 22px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 20px var(--violet-glow);
+}
+.nav-cta:hover { opacity: 0.88; box-shadow: 0 0 32px var(--violet-glow); }
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-orb1 {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+  top: -200px; right: -100px;
+  pointer-events: none;
+}
+
+.hero-orb2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+  bottom: -100px; left: -100px;
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: 100px;
+  padding: 6px 16px 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--violet-lt);
+  margin-bottom: 36px;
+  width: fit-content;
+}
+
+.badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 10px #4ade80;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; box-shadow: 0 0 10px #4ade80; }
+  50% { opacity: 0.4; box-shadow: none; }
+}
+
+.hero-title {
+  font-size: clamp(48px, 7.5vw, 108px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.hero-title .grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: var(--text2);
+  font-weight: 300;
+  margin-top: 20px;
+  max-width: 520px;
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 44px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-grad {
+  background: var(--grad);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 30px var(--violet-glow);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.btn-grad:hover { box-shadow: 0 6px 40px rgba(15, 245, 26, 0.45); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text2);
+  padding: 12px 26px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(99, 237, 0, 0.5); color: var(--text); }
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.stat-num {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.ticker-wrap {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  overflow: hidden;
+  background: var(--bg2);
+  position: relative;
+  z-index: 1;
+}
+
+.ticker-track {
+  display: flex;
+  animation: ticker 28s linear infinite;
+  width: max-content;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 36px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.ticker-sep {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--violet);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.section { padding: 100px 48px; position: relative; z-index: 1; }
+.section-alt { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-lt);
+  margin-bottom: 40px;
+}
+.chip::before {
+  content: '';
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+}
+
+.section-headline {
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 56px;
+}
+
+.section-headline .grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-body {
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1.85;
+  font-weight: 300;
+}
+.about-body p + p { margin-top: 16px; }
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.tag {
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.25);
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--violet-lt);
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.02em;
+}
+.tag:hover { background: rgba(124,58,237,0.2); border-color: rgba(124,58,237,0.5); }
+
+.exp-list { display: flex; flex-direction: column; }
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+
+.exp-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text3);
+  padding-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+.exp-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--grad);
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  box-shadow: 0 0 8px var(--violet-glow);
+}
+
+.exp-role {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.exp-company {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue-lt);
+  margin-bottom: 16px;
+}
+
+.exp-desc {
+  color: var(--text2);
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+.exp-desc li {
+  list-style: none;
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+}
+.exp-desc li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--violet);
+  opacity: 0.6;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.skill-card {
+  background: var(--bg2);
+  padding: 36px 32px;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grad);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.skill-card:hover { background: var(--bg3); }
+.skill-card:hover::before { opacity: 1; }
+
+.skill-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--grad-soft);
+  border: 1px solid rgba(124,58,237,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.skill-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.skill-tools {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.project-card {
+  background: var(--bg2);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: background 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.project-card:hover { background: var(--bg3); }
+
+.project-glow {
+  position: absolute;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.1;
+  top: -80px; right: -80px;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.project-card:hover .project-glow { opacity: 0.2; }
+
+.glow-blue { background: #3b82f6; }
+.glow-violet { background: #7c3aed; }
+.glow-indigo { background: #6366f1; }
+.glow-sky { background: #0ea5e9; }
+
+.project-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.project-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.project-desc {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.project-arrow {
+  position: absolute;
+  top: 28px; right: 28px;
+  width: 36px; height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text3);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.project-card:hover .project-arrow {
+  border-color: rgba(124,58,237,0.5);
+  color: var(--violet-lt);
+  transform: translate(2px, -2px);
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+
+.edu-group-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--violet-lt);
+  margin-bottom: 24px;
+}
+
+.edu-item {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.edu-item:first-of-type { border-top: 1px solid var(--border); }
+
+.edu-degree {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.edu-school {
+  font-size: 13px;
+  color: var(--blue-lt);
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.edu-meta {
+  font-size: 12px;
+  color: var(--text3);
+  font-weight: 300;
+}
+
+.contact-wrap {
+  text-align: center;
+  padding: 120px 48px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.contact-orb {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 65%);
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
+.contact-headline {
+  font-size: clamp(40px, 6.5vw, 88px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.contact-headline .grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-sub {
+  color: var(--text2);
+  font-size: 16px;
+  font-weight: 300;
+  max-width: 420px;
+  margin: 0 auto 48px;
+  line-height: 1.65;
+}
+
+.contact-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text3);
+  font-weight: 300;
+  z-index: 1;
+  position: relative;
+}
+footer a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: var(--violet-lt); }
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .section, .contact-wrap { padding: 72px 24px; }
+  .hero { padding: 100px 24px 72px; }
+  .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 8px; }
+  footer { flex-direction: column; gap: 14px; text-align: center; }
+  .hero-stats { gap: 28px; }
+  .loader-logo { font-size: 36px; }
+  .loader-skill { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">Sachin PJ</div>
+    <div class="loader-skill" id="loaderSkill">UI/UX Design</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Sachin PJ</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:sachinsachin0454@gmail.com" class="nav-cta">Hire Me →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Available for opportunities
+  </div>
+
+  <h1 class="hero-title">
+    Sachin PJ<br>
+    <span class="grad-text">Visual Designer</span>
+  </h1>
+
+  <p class="hero-sub">UI/UX &amp; Graphic Designer crafting purposeful digital experiences — where research meets aesthetics meets function.</p>
+
+  <div class="hero-actions">
+    <a href="https://www.behance.net/gallery/175215307/solidify-portfolio" target="_blank" class="btn-grad">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      View Portfolio
+    </a>
+    <a href="mailto:sachinsachin0454@gmail.com" class="btn-ghost">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Get in Touch
+    </a>
+    <a href="https://www.linkedin.com/in/sachin-pj-5463b61bb/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">2</div>
+      <div class="stat-label">Companies</div>
+    </div>
+    <div>
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Tools Mastered</div>
+    </div>
+    <div>
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Ideas / Pixel</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item">Figma <span class="ticker-sep"></span> Adobe XD <span class="ticker-sep"></span> Photoshop <span class="ticker-sep"></span> Illustrator <span class="ticker-sep"></span> After Effects <span class="ticker-sep"></span> Protopie <span class="ticker-sep"></span> Spline 3D <span class="ticker-sep"></span> Blender <span class="ticker-sep"></span> Webflow <span class="ticker-sep"></span> Sketch <span class="ticker-sep"></span> Miro <span class="ticker-sep"></span> InVision <span class="ticker-sep"></span> Balsamiq <span class="ticker-sep"></span> Maze <span class="ticker-sep"></span> Affinity</div>
+    <div class="ticker-item">Figma <span class="ticker-sep"></span> Adobe XD <span class="ticker-sep"></span> Photoshop <span class="ticker-sep"></span> Illustrator <span class="ticker-sep"></span> After Effects <span class="ticker-sep"></span> Protopie <span class="ticker-sep"></span> Spline 3D <span class="ticker-sep"></span> Blender <span class="ticker-sep"></span> Webflow <span class="ticker-sep"></span> Sketch <span class="ticker-sep"></span> Miro <span class="ticker-sep"></span> InVision <span class="ticker-sep"></span> Balsamiq <span class="ticker-sep"></span> Maze <span class="ticker-sep"></span> Affinity</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="chip">About Me</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-headline fade-up">
+        Designing for humans,<br>not just <span class="grad-text">screens.</span>
+      </h2>
+    </div>
+    <div class="fade-up">
+      <div class="about-body">
+        <p>I'm a driven and detail-oriented UI/UX and Graphic Designer based in Chennai, Tamil Nadu. I blend visual craft with user empathy to create experiences that are both beautiful and deeply functional.</p>
+        <p>With a background in Electronics &amp; Communication Engineering and specialized training in UI/UX, I bring a unique analytical lens to every design challenge — from product systems to refined brand identities.</p>
+        <p>Currently looking for my next challenge where design thinking drives real product impact.</p>
+      </div>
+      <div class="about-tags">
+        <span class="tag">UX Research</span>
+        <span class="tag">Interaction Design</span>
+        <span class="tag">Branding</span>
+        <span class="tag">Motion Graphics</span>
+        <span class="tag">User Testing</span>
+        <span class="tag">Information Architecture</span>
+        <span class="tag">Prototyping</span>
+        <span class="tag">Visual Design</span>
+        <span class="tag">Typography</span>
+        <span class="tag">Color Theory</span>
+        <span class="tag">Story Boarding</span>
+        <span class="tag">Heuristic Evaluation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="chip">Experience</div>
+  <div class="exp-list">
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">
+        <span class="exp-dot"></span>Jun 2025 – Nov 2025
+      </div>
+      <div>
+        <div class="exp-role">Graphic Designer</div>
+        <div class="exp-company">MachineMaze</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Led creative design projects spanning branding, social media, and marketing visuals</li>
+            <li>Collaborated cross-functionally to create engaging UI elements and motion graphics</li>
+            <li>Supported video editing and promotional design deliverables end-to-end</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">
+        <span class="exp-dot"></span>Jul 2023 – Jun 2025
+      </div>
+      <div>
+        <div class="exp-role">Graphic Designer</div>
+        <div class="exp-company">V-Multi Pack Systems · multipacksystems.in</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Designed comprehensive branding systems including logo design and product packaging</li>
+            <li>Produced high-quality promotional materials, flyers, and product cover designs</li>
+            <li>Managed multiple design projects from concept to completion, meeting all deadlines</li>
+            <li>Built and maintained visual consistency across all brand touchpoints</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section section-alt" id="skills">
+  <div class="chip">Capabilities</div>
+  <div class="skills-grid">
+    <div class="skill-card fade-up">
+      <div class="skill-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g1)" stroke-width="1.5">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <div class="skill-title">UI / UX Design</div>
+      <div class="skill-tools">Wireframing · Prototyping · User Testing · Persona Creation · Task Analysis · Heuristic Evaluation · Story Boarding · Information Architecture</div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g2)" stroke-width="1.5">
+          <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+      </div>
+      <div class="skill-title">Design Tools</div>
+      <div class="skill-tools">Figma · Adobe XD · Balsamiq · Miro · Maze · InVision · Sketch · Protopie · Webflow · Spline 3D</div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g3)" stroke-width="1.5">
+          <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="skill-title">Graphic Design</div>
+      <div class="skill-tools">Photoshop · Illustrator · After Effects · Lightroom · Premiere Pro · Blender · Affinity Designer · Trello</div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g4)" stroke-width="1.5">
+          <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
+          <path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/>
+        </svg>
+      </div>
+      <div class="skill-title">Branding &amp; Identity</div>
+      <div class="skill-tools">Logo Design · Icon Systems · Typography · Color Theory · Brand Guidelines · Packaging · Marketing Collateral</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="chip">Selected Work</div>
+  <h2 class="section-headline fade-up">
+    Craft that speaks <span class="grad-text">before words do.</span>
+  </h2>
+
+  <div class="project-grid">
+    <a href="https://www.behance.net/gallery/175215307/solidify-portfolio" target="_blank" class="project-card">
+      <div class="project-glow glow-violet"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-tag">UI/UX · Portfolio</div>
+      <div class="project-name">Solidify Portfolio</div>
+      <div class="project-desc">A comprehensive design portfolio showcasing end-to-end UX process and visual craft.</div>
+    </a>
+
+    <a href="https://www.multipacksystems.in/" target="_blank" class="project-card">
+      <div class="project-glow glow-blue"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-tag">Branding · Web</div>
+      <div class="project-name">V-Multi Pack Systems</div>
+      <div class="project-desc">Complete brand identity and web presence for a manufacturing and packaging company.</div>
+    </a>
+
+    <div class="project-card" style="cursor:default;">
+      <div class="project-glow glow-indigo"></div>
+      <div class="project-tag">Motion · Social Media</div>
+      <div class="project-name">Social Media Campaigns</div>
+      <div class="project-desc">Motion graphics and animated content for B2B and consumer brand campaigns across multiple platforms.</div>
+    </div>
+
+    <div class="project-card" style="cursor:default;">
+      <div class="project-glow glow-sky"></div>
+      <div class="project-tag">Product Design · Print</div>
+      <div class="project-name">Packaging &amp; Print</div>
+      <div class="project-desc">High-impact product packaging and print collateral designed to perform on shelf and online.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section section-alt" id="education">
+  <div class="chip">Background</div>
+  <div class="edu-grid">
+    <div>
+      <div class="edu-group-label">Education</div>
+      <div class="edu-item fade-up">
+        <div class="edu-degree">B.E. Electronics &amp; Communication</div>
+        <div class="edu-school">Rajalakshmi Institute of Technology</div>
+        <div class="edu-meta">2019 – 2023 · CGPA 7.68</div>
+      </div>
+      <div class="edu-item fade-up">
+        <div class="edu-degree">Advanced UI/UX Designing</div>
+        <div class="edu-school">Web D School</div>
+        <div class="edu-meta">September 2022 – February 2023</div>
+      </div>
+    </div>
+    <div>
+      <div class="edu-group-label">Certifications</div>
+      <div class="edu-item fade-up">
+        <div class="edu-degree">Advanced UI/UX Designing</div>
+        <div class="edu-school">Web D School</div>
+        <div class="edu-meta">November 2022 – April 2023</div>
+      </div>
+      <div class="edu-item fade-up">
+        <div class="edu-degree">Secure Computer User (CSCU)</div>
+        <div class="edu-school">EC-Council</div>
+        <div class="edu-meta">January – February 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-orb"></div>
+  <h2 class="contact-headline fade-up">
+    Let's build<br><span class="grad-text">something great.</span>
+  </h2>
+  <p class="contact-sub fade-up">Open to full-time roles, freelance projects, and design collaborations worldwide.</p>
+  <div class="contact-btns fade-up">
+    <a href="mailto:sachinsachin0454@gmail.com" class="btn-grad">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      sachinsachin0454@gmail.com
+    </a>
+    <a href="https://www.behance.net/sachinspage" target="_blank" class="btn-ghost">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/sachin-pj-5463b61bb/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Sachin PJ — UI/UX &amp; Visual Designer</span>
+  <span>Chennai, Tamil Nadu · +91 98404 63695</span>
+  <div style="display:flex;gap:20px;">
+    <a href="mailto:sachinsachin0454@gmail.com">Email</a>
+    <a href="https://www.behance.net/sachinspage" target="_blank">Behance</a>
+    <a href="https://www.linkedin.com/in/sachin-pj-5463b61bb/" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+/* ── LOADER ── */
+const skills = [
+  "UI/UX Design",
+  "Graphic Design",
+  "Figma",
+  "Adobe Photoshop",
+  "Illustrator",
+  "After Effects",
+  "Motion Graphics",
+  "Brand Identity",
+  "Blender",
+  "Webflow"
+];
+
+const DURATION = 5000;
+const skillEl = document.getElementById("loaderSkill");
+const bar = document.getElementById("progressBar");
+const loader = document.getElementById("loader");
+
+let idx = 0;
+const interval = setInterval(() => {
+  idx++;
+  if (idx < skills.length) {
+    skillEl.classList.add("fade-out");
+    setTimeout(() => {
+      skillEl.textContent = skills[idx];
+      skillEl.classList.remove("fade-out");
+    }, 200);
+  }
+}, DURATION / skills.length);
+
+// Smooth progress bar via rAF
+const start = performance.now();
+function animateBar(now) {
+  const pct = Math.min(((now - start) / DURATION) * 100, 100);
+  bar.style.width = pct + "%";
+  if (pct < 100) requestAnimationFrame(animateBar);
+}
+requestAnimationFrame(animateBar);
+
+// Hide loader after duration
+setTimeout(() => {
+  clearInterval(interval);
+  loader.classList.add("hidden");
+}, DURATION);
+
+/* ── SCROLL ANIMATIONS ── */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 90) + "ms";
+      e.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll(".fade-up").forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
