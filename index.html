@@ -1,1138 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sachin PJ — UI/UX & Visual Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sachin PJ — Visual & UI/UX Designer</title>
+<meta name="description" content="Portfolio of Sachin PJ, a multidisciplinary designer in Chennai: UI/UX, branding, packaging, motion and print.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 <style>
-
-/* ───── LOADER ───── */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: #0a0a0a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-#loader.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.loader-content {
-  text-align: center;
-  width: 420px;
-  padding: 0 24px;
-}
-
-.loader-logo {
-  font-size: 52px;
-  font-weight: 800;
-  margin-bottom: 40px;
-  background: linear-gradient(135deg, #3b82f6, #46ed3a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: 'Poppins', sans-serif;
-}
-
-.loader-skill {
-  font-size: 26px;
-  font-weight: 600;
-  color: white;
-  height: 40px;
-  margin-bottom: 30px;
-  transition: opacity 0.2s ease;
-  font-family: 'Poppins', sans-serif;
-}
-
-.loader-skill.fade-out { opacity: 0; }
-
-.progress-container {
-  width: 100%;
-  height: 8px;
-  background: #181818;
-  border-radius: 100px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  border-radius: 100px;
-  background: linear-gradient(135deg, #3b82f6, #46ed3a);
-  transition: width 0.1s linear;
-}
-
-/* ───── MAIN SITE ───── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg:        #0a0a0a;
-  --bg2:       #111111;
-  --bg3:       #1a1a1a;
-  --blue:      #3b82f6;
-  --blue-lt:   #60a5fa;
-  --blue-glow: rgba(59,130,246,0.2);
-  --violet:    #7c3aed;
-  --violet-lt: #a78bfa;
-  --violet-glow: rgba(124,58,237,0.2);
-  --grad:      linear-gradient(135deg, #3b82f6 0%, #46ed3a 100%);
-  --grad-soft: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(124,58,237,0.12) 100%);
-  --border:    rgba(255,255,255,0.08);
-  --border-b:  rgba(255,255,255,0.05);
-  --text:      #f2f2f2;
-  --text2:     #8a8a9a;
-  --text3:     #484858;
-  --sans: 'Poppins', sans-serif;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  padding: 0 48px;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(10,10,10,0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-logo {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a {
-  color: var(--text2);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 400;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--text); }
-
-.nav-cta {
-  background: var(--grad);
-  color: #fff;
-  padding: 9px 22px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: opacity 0.2s, box-shadow 0.2s;
-  box-shadow: 0 0 20px var(--violet-glow);
-}
-.nav-cta:hover { opacity: 0.88; box-shadow: 0 0 32px var(--violet-glow); }
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 48px 80px;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.hero-orb1 {
-  position: absolute;
-  width: 700px; height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
-  top: -200px; right: -100px;
-  pointer-events: none;
-}
-
-.hero-orb2 {
-  position: absolute;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
-  bottom: -100px; left: -100px;
-  pointer-events: none;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(124,58,237,0.12);
-  border: 1px solid rgba(124,58,237,0.3);
-  border-radius: 100px;
-  padding: 6px 16px 6px 10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--violet-lt);
-  margin-bottom: 36px;
-  width: fit-content;
-}
-
-.badge-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 10px #4ade80;
-  animation: blink 2s ease-in-out infinite;
-}
-
-@keyframes blink {
-  0%,100% { opacity: 1; box-shadow: 0 0 10px #4ade80; }
-  50% { opacity: 0.4; box-shadow: none; }
-}
-
-.hero-title {
-  font-size: clamp(48px, 7.5vw, 108px);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.hero-title .grad-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-sub {
-  font-size: clamp(15px, 1.8vw, 20px);
-  color: var(--text2);
-  font-weight: 300;
-  margin-top: 20px;
-  max-width: 520px;
-  line-height: 1.65;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 44px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.btn-grad {
-  background: var(--grad);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 100px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 30px var(--violet-glow);
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.btn-grad:hover { box-shadow: 0 6px 40px rgba(15, 245, 26, 0.45); transform: translateY(-1px); }
-
-.btn-ghost {
-  background: transparent;
-  color: var(--text2);
-  padding: 12px 26px;
-  border-radius: 100px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  border: 1px solid var(--border);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-ghost:hover { border-color: rgba(99, 237, 0, 0.5); color: var(--text); }
-
-.hero-stats {
-  display: flex;
-  gap: 48px;
-  margin-top: 64px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-}
-
-.stat-num {
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 11px;
-  color: var(--text3);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 4px;
-  font-weight: 400;
-}
-
-.ticker-wrap {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
-  overflow: hidden;
-  background: var(--bg2);
-  position: relative;
-  z-index: 1;
-}
-
-.ticker-track {
-  display: flex;
-  animation: ticker 28s linear infinite;
-  width: max-content;
-}
-
-.ticker-item {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 0 36px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text3);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  white-space: nowrap;
-}
-
-.ticker-sep {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--violet);
-  opacity: 0.6;
-  flex-shrink: 0;
-}
-
-@keyframes ticker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.section { padding: 100px 48px; position: relative; z-index: 1; }
-.section-alt { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--blue-lt);
-  margin-bottom: 40px;
-}
-.chip::before {
-  content: '';
-  display: block;
-  width: 24px; height: 2px;
-  background: var(--grad);
-  border-radius: 2px;
-}
-
-.section-headline {
-  font-size: clamp(30px, 4vw, 52px);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-  color: var(--text);
-  margin-bottom: 56px;
-}
-
-.section-headline .grad-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.about-body {
-  color: var(--text2);
-  font-size: 15px;
-  line-height: 1.85;
-  font-weight: 300;
-}
-.about-body p + p { margin-top: 16px; }
-
-.about-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 28px;
-}
-
-.tag {
-  background: rgba(124,58,237,0.1);
-  border: 1px solid rgba(124,58,237,0.25);
-  padding: 5px 14px;
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--violet-lt);
-  transition: background 0.2s, border-color 0.2s;
-  letter-spacing: 0.02em;
-}
-.tag:hover { background: rgba(124,58,237,0.2); border-color: rgba(124,58,237,0.5); }
-
-.exp-list { display: flex; flex-direction: column; }
-
-.exp-item {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 48px;
-  padding: 44px 0;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-}
-.exp-item:first-child { border-top: 1px solid var(--border); }
-
-.exp-date {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text3);
-  padding-top: 6px;
-  letter-spacing: 0.02em;
-}
-
-.exp-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--grad);
-  display: inline-block;
-  margin-right: 8px;
-  vertical-align: middle;
-  box-shadow: 0 0 8px var(--violet-glow);
-}
-
-.exp-role {
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 4px;
-  letter-spacing: -0.01em;
-}
-
-.exp-company {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--blue-lt);
-  margin-bottom: 16px;
-}
-
-.exp-desc {
-  color: var(--text2);
-  font-size: 14px;
-  line-height: 1.75;
-  font-weight: 300;
-}
-.exp-desc li {
-  list-style: none;
-  position: relative;
-  padding-left: 16px;
-  margin-bottom: 6px;
-}
-.exp-desc li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--violet);
-  opacity: 0.6;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.skill-card {
-  background: var(--bg2);
-  padding: 36px 32px;
-  transition: background 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--grad);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.skill-card:hover { background: var(--bg3); }
-.skill-card:hover::before { opacity: 1; }
-
-.skill-icon-wrap {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  background: var(--grad-soft);
-  border: 1px solid rgba(124,58,237,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.skill-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
-}
-
-.skill-tools {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.75;
-  font-weight: 300;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.project-card {
-  background: var(--bg2);
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-  min-height: 270px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  transition: background 0.3s;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.project-card:hover { background: var(--bg3); }
-
-.project-glow {
-  position: absolute;
-  width: 240px; height: 240px;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.1;
-  top: -80px; right: -80px;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-.project-card:hover .project-glow { opacity: 0.2; }
-
-.glow-blue { background: #3b82f6; }
-.glow-violet { background: #7c3aed; }
-.glow-indigo { background: #6366f1; }
-.glow-sky { background: #0ea5e9; }
-
-.project-tag {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text3);
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.project-name {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-  line-height: 1.2;
-}
-
-.project-desc {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.65;
-  font-weight: 300;
-}
-
-.project-arrow {
-  position: absolute;
-  top: 28px; right: 28px;
-  width: 36px; height: 36px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text3);
-  font-size: 14px;
-  transition: all 0.2s;
-}
-.project-card:hover .project-arrow {
-  border-color: rgba(124,58,237,0.5);
-  color: var(--violet-lt);
-  transform: translate(2px, -2px);
-}
-
-.edu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-}
-
-.edu-group-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--violet-lt);
-  margin-bottom: 24px;
-}
-
-.edu-item {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--border);
-}
-.edu-item:first-of-type { border-top: 1px solid var(--border); }
-
-.edu-degree {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.edu-school {
-  font-size: 13px;
-  color: var(--blue-lt);
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-
-.edu-meta {
-  font-size: 12px;
-  color: var(--text3);
-  font-weight: 300;
-}
-
-.contact-wrap {
-  text-align: center;
-  padding: 120px 48px;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.contact-orb {
-  position: absolute;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 65%);
-  left: 50%; top: 50%;
-  transform: translate(-50%,-50%);
-  pointer-events: none;
-}
-
-.contact-headline {
-  font-size: clamp(40px, 6.5vw, 88px);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 20px;
-}
-
-.contact-headline .grad-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.contact-sub {
-  color: var(--text2);
-  font-size: 16px;
-  font-weight: 300;
-  max-width: 420px;
-  margin: 0 auto 48px;
-  line-height: 1.65;
-}
-
-.contact-btns {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-footer {
-  border-top: 1px solid var(--border);
-  padding: 28px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: var(--text3);
-  font-weight: 300;
-  z-index: 1;
-  position: relative;
-}
-footer a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
-footer a:hover { color: var(--violet-lt); }
-
-.fade-up {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
-}
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 768px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .section, .contact-wrap { padding: 72px 24px; }
-  .hero { padding: 100px 24px 72px; }
-  .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 40px; }
-  .project-grid { grid-template-columns: 1fr; }
-  .exp-item { grid-template-columns: 1fr; gap: 8px; }
-  footer { flex-direction: column; gap: 14px; text-align: center; }
-  .hero-stats { gap: 28px; }
-  .loader-logo { font-size: 36px; }
-  .loader-skill { font-size: 20px; }
-}
+:root{--bg:#0B0B0D;--bg2:#141418;--tx:#F5F5F5;--tx2:#A1A1AA;--ac:#B8FF5C;--bd:rgba(255,255,255,.12);--pad:clamp(20px,5vw,72px);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.sg{font-family:"Space Grotesk",Inter,sans-serif;margin:0;line-height:.98;letter-spacing:-.03em}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+p{margin:0 0 1em;max-width:62ch}
+img,canvas{max-width:100%}
+.w{padding:clamp(72px,11vw,150px) var(--pad)}
+.dim{color:var(--tx2)}
+h2{font-size:clamp(2.4rem,7vw,6rem);font-weight:700;margin-bottom:.4em}
+.btn{display:inline-flex;align-items:center;gap:.5em;padding:14px 26px;border-radius:99px;border:1px solid var(--bd);font:500 15px Inter;background:transparent;color:var(--tx);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.btn:hover{border-color:var(--ac)}
+.btn.p{background:var(--ac);color:#0B0B0D;border-color:var(--ac)}
+.btn.p:hover{background:#d4ff9a}
+/* loader */
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:45;pointer-events:none;opacity:1}
+#gl.done{z-index:1}
+#ld{position:fixed;inset:0;z-index:40;background:var(--bg);clip-path:circle(150% at 50% 50%)}
+#ldt{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10vh var(--pad);text-align:center;pointer-events:none}
+#ldt .st{font:500 12px Inter;letter-spacing:.3em;color:var(--ac);text-transform:uppercase}
+#ldw{font:700 clamp(2.5rem,9vw,7rem)/1 "Space Grotesk";height:1.1em;letter-spacing:-.03em}
+#ldn{opacity:0;transform:translateY(20px)}
+#ldn b{display:block;font:700 clamp(3rem,12vw,10rem)/.9 "Space Grotesk";letter-spacing:-.04em}
+#ldn span{font:500 13px Inter;letter-spacing:.2em;color:var(--tx2)}
+.bar{width:min(320px,70vw);height:2px;background:var(--bd);margin:18px auto 8px}
+.bar i{display:block;height:100%;width:0;background:var(--ac)}
+#pc{font:500 13px "Space Grotesk";color:var(--tx2)}
+/* nav */
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);transition:background .3s,backdrop-filter .3s}
+nav.s{background:rgba(11,11,13,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.logo{font:700 20px "Space Grotesk"}.logo i{color:var(--ac);font-style:normal}
+.links{display:flex;gap:26px;font-size:14px}
+.links a{color:var(--tx2);transition:color .2s;padding:4px 0;border-bottom:1px solid transparent}
+.links a:hover,.links a.on{color:var(--tx);border-color:var(--ac)}
+.rt{display:flex;align-items:center;gap:16px;font-size:13px}
+.av{display:flex;align-items:center;gap:8px;color:var(--tx2)}
+.av::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac)}
+.rt .btn{padding:9px 20px;font-size:14px}
+#bg{display:none;background:none;border:1px solid var(--bd);color:var(--tx);border-radius:99px;padding:8px 16px;font:500 14px Inter;cursor:pointer}
+@media(max-width:1100px){.links{position:fixed;inset:0;background:var(--bg);flex-direction:column;align-items:flex-start;justify-content:center;padding:var(--pad);gap:18px;font:700 2.4rem "Space Grotesk";transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1);z-index:-1}
+.links.o{transform:none}#bg{display:block}.av{display:none}}
+@media(max-width:560px){.rt .btn{display:none}}
+/* hero */
+#home{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:repeat(12,1fr);align-items:center;padding:120px var(--pad) 80px;position:relative;z-index:2}
+.hc{grid-column:1/8}
+.hc h1{font-size:clamp(2.6rem,7.4vw,7rem);font-weight:700;text-transform:uppercase;margin-bottom:.4em}
+.id{font:500 13px Inter;letter-spacing:.18em;color:var(--ac);margin-bottom:22px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.sc{position:absolute;bottom:28px;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;font:500 12px Inter;letter-spacing:.2em;color:var(--tx2)}
+.sc i{display:inline-block;width:1px;height:40px;background:linear-gradient(var(--ac),transparent);vertical-align:middle;margin-right:12px}
+@media(max-width:900px){.hc{grid-column:1/13}#home{align-items:end}.hc h1{font-size:clamp(2.2rem,11vw,4rem)}}
+section,footer{position:relative;z-index:2}
+main section:not(#home),footer{background:var(--bg)}
+/* about */
+.ab{display:grid;grid-template-columns:repeat(12,1fr);gap:40px}
+.ab>div:first-child{grid-column:1/7}.ab>div:last-child{grid-column:8/13}
+.stat{display:flex;align-items:baseline;gap:16px;padding:20px 0;border-top:1px solid var(--bd)}
+.stat b{font:700 clamp(2.6rem,6vw,4.6rem)/1 "Space Grotesk";color:var(--ac);min-width:2.2em}
+@media(max-width:900px){.ab>div:first-child,.ab>div:last-child{grid-column:1/13}}
+/* works */
+.fl{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 32px}
+.fl button{background:none;border:1px solid var(--bd);color:var(--tx2);padding:9px 18px;border-radius:99px;font:500 14px Inter;cursor:pointer;transition:.2s}
+.fl button:hover{color:var(--tx)}.fl button.on{background:var(--ac);color:#0B0B0D;border-color:var(--ac)}
+#projects{overflow-x:clip}
+#pl{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;perspective:1400px;perspective-origin:50% 35%}
+.pj.pi{display:block;aspect-ratio:4/3;border-radius:22px;transition:border-color .3s;will-change:transform,opacity}
+.pj.sel{border-color:var(--ac)}
+.ov{position:absolute;inset:auto 0 0 0;z-index:2;padding:44px 18px 16px;background:linear-gradient(transparent,rgba(11,11,13,.92));display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:end}
+.ov b{font:700 14px "Space Grotesk";color:var(--ac);grid-row:1/4}
+.ov h3{font-size:clamp(1rem,1.5vw,1.25rem);font-weight:500;letter-spacing:-.01em;line-height:1.15}
+.ov small{color:var(--tx2);font-size:12px}.ov i{font:500 12px Inter;font-style:normal;color:var(--ac);text-decoration:underline;text-underline-offset:3px}
+#fp{display:none;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;margin-bottom:36px;padding:20px;border:1px solid var(--bd);border-radius:28px;background:var(--bg2)}
+#fp .pi{aspect-ratio:16/10}#fp h3{font-size:clamp(1.8rem,3.4vw,3rem);margin:8px 0 14px}
+.fl .rset{border-color:var(--ac);color:var(--ac);display:none}.fl.f .rset{display:block}
+@media(max-width:1000px){#pl{grid-template-columns:repeat(2,1fr)}#fp{grid-template-columns:1fr}}
+@media(max-width:600px){#pl{grid-template-columns:1fr;gap:16px}}
+@media(max-width:700px){.fl{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}.fl button{flex:none;min-height:44px}}
+.pi{transform-style:preserve-3d;border-radius:clamp(24px,3vw,32px);overflow:hidden;aspect-ratio:16/9;border:1px solid var(--bd);background:var(--bg2);position:relative;will-change:transform}
+.ph{position:absolute;inset:-4%;background:radial-gradient(circle at 25% 30%,hsl(var(--h) 70% 55%/.55),transparent 55%),radial-gradient(circle at 80% 80%,hsl(calc(var(--h) + 60) 60% 40%/.5),transparent 50%),var(--bg2);display:flex;align-items:center;justify-content:center;transition:transform .3s ease-out}
+.ph span{font:500 clamp(11px,1.4vw,14px) Inter;color:var(--tx);opacity:.7;border:1px dashed rgba(255,255,255,.35);padding:8px 16px;border-radius:99px;text-align:center;margin:12px}
+.pi:hover .ph{transform:scale(1.06)}
+.pm{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:30px;align-items:start}
+.pm .n{grid-column:1/2;font:700 1.4rem "Space Grotesk";color:var(--ac)}
+.pm .t{grid-column:2/8}.pm .t h3{font-size:clamp(1.8rem,4vw,3.4rem);font-weight:700;margin-bottom:10px}
+.pm .d{grid-column:8/13}
+.tg{font-size:13px;color:var(--tx2);margin-bottom:14px}
+@media(max-width:900px){.pm .n,.pm .t,.pm .d{grid-column:1/13}}
+/* skills */
+.sk{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.sg2{background:var(--bg2);border:1px solid var(--bd);border-radius:24px;padding:28px}
+.sg2 h3{font-size:1.3rem;margin-bottom:18px;font-weight:500}
+.sg2 ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.sg2 li{padding:6px 14px;border:1px solid var(--bd);border-radius:99px;font-size:14px;color:var(--tx2);transition:.2s}
+.sg2 li:hover{color:#0B0B0D;background:var(--ac);border-color:var(--ac);transform:translateY(-2px)}
+.sw{margin-top:18px}
+/* workflow */
+.wf{position:relative;display:grid;gap:0;max-width:900px;padding-left:58px}
+.wf::before{content:"";position:absolute;left:19px;top:10px;bottom:10px;width:2px;background:var(--bd)}
+.wf .ln{position:absolute;left:19px;top:10px;width:2px;height:0;background:var(--ac)}
+.st2{position:relative;padding:0 0 42px}
+.st2::before{content:attr(data-n);position:absolute;left:-58px;top:0;width:40px;height:40px;border-radius:50%;background:var(--bg);border:1px solid var(--ac);display:grid;place-items:center;font:700 13px "Space Grotesk";color:var(--ac)}
+.st2 h3{font-size:1.8rem;margin-bottom:6px}
+/* experience */
+.ex{display:grid;gap:0}
+.xr{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:36px 0;border-top:1px solid var(--bd)}
+.xr .a{grid-column:1/4;color:var(--tx2);font-size:14px}.xr .b{grid-column:4/13}
+.xr h3{font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:6px}
+.xr ul{padding-left:18px;color:var(--tx2);margin:14px 0 0}
+.ed{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:50px}
+@media(max-width:800px){.xr .a,.xr .b{grid-column:1/13}}
+/* approach */
+.ap{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.ap div{border:1px solid var(--bd);border-radius:28px;padding:34px;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(160deg,var(--bg2),var(--bg))}
+.ap b{font:700 clamp(2.4rem,5vw,4rem)/1 "Space Grotesk";margin-bottom:10px}
+/* contact */
+#contact h2{font-size:clamp(2.8rem,9vw,8rem);text-transform:uppercase}
+.cg{display:grid;grid-template-columns:repeat(12,1fr);gap:40px;margin-top:50px}
+.cg>div:first-child{grid-column:1/6}.cg>form{grid-column:7/13}
+.cd a{display:block;padding:10px 0;border-bottom:1px solid var(--bd)}.cd a:hover{color:var(--ac)}
+form{display:grid;gap:14px}
+input,textarea{width:100%;background:var(--bg2);border:1px solid var(--bd);border-radius:16px;color:var(--tx);padding:14px 18px;font:400 16px Inter}
+input:focus,textarea:focus{border-color:var(--ac);outline:none}
+.er{color:#ff8a8a;font-size:13px;min-height:1em}
+@media(max-width:900px){.cg>div:first-child,.cg>form{grid-column:1/13}}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:40px var(--pad);border-top:1px solid var(--bd);font-size:14px;color:var(--tx2);align-items:center}
+/* detail */
+#dt{display:none;position:relative;z-index:2;background:var(--bg);min-height:100vh;padding:110px var(--pad) 80px}
+body.det main{display:none}body.det #dt{display:block}body.det #gl{display:none}
+.ds{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:36px 0;border-top:1px solid var(--bd)}
+.ds h3{grid-column:1/4;font-size:1.2rem;font-weight:500;color:var(--ac)}.ds div{grid-column:4/13}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.gal button{aspect-ratio:4/3;border:1px solid var(--bd);border-radius:20px;overflow:hidden;position:relative;background:var(--bg2);cursor:zoom-in;padding:0;color:var(--tx)}
+.pn{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:60px}
+#lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:5vw}
+#lb.o{display:flex}#lb .pi{width:min(1100px,100%);cursor:zoom-out}
+@media(max-width:800px){.ds h3,.ds div{grid-column:1/13}}
+/* cursor */
+#cu{position:fixed;left:0;top:0;width:12px;height:12px;margin:-6px;border-radius:50%;background:var(--ac);z-index:200;pointer-events:none;mix-blend-mode:difference;transition:width .2s,height .2s,margin .2s}
+#cu.h{width:46px;height:46px;margin:-23px}
+@media(pointer:coarse){#cu{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-content">
-    <div class="loader-logo">Sachin PJ</div>
-    <div class="loader-skill" id="loaderSkill">UI/UX Design</div>
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-  </div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="ld" aria-hidden="true"></div>
+<div id="ldt" role="status" aria-live="polite">
+  <div class="st" id="lds">Initializing creative space…</div>
+  <div><div id="ldw"></div>
+    <div id="ldn"><b>Sachin PJ.</b><span>DESIGNING IDEAS INTO EXPERIENCES.</span></div></div>
+  <div><div class="bar"><i id="lb2"></i></div><div id="pc">0%</div></div>
 </div>
+<div id="cu"></div>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Sachin PJ</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="mailto:sachinsachin0454@gmail.com" class="nav-cta">Hire Me →</a>
+<nav id="nv">
+  <a class="logo" href="#home">SACHIN PJ<i>.</i></a>
+  <div class="links" id="lk">
+    <a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#workflow">Workflow</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </div>
+  <div class="rt"><span class="av">Available for opportunities</span><a class="btn p mg" href="#contact">Let’s talk</a><button id="bg" aria-expanded="false" aria-controls="lk">Menu</button></div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-orb1"></div>
-  <div class="hero-orb2"></div>
-
-  <div class="hero-badge">
-    <span class="badge-dot"></span>
-    Available for opportunities
+<main>
+<section id="home">
+  <div class="hc">
+    <div class="id">VISUAL DESIGNER | UI/UX DESIGNER | CREATIVE THINKER</div>
+    <h1>Designing<br>digital experiences<br>that matter.</h1>
+    <p class="dim">I’m Sachin PJ — a multidisciplinary designer blending UI/UX, visual design, branding, packaging and motion to create meaningful digital and physical experiences.</p>
+    <div class="ctas"><a class="btn p mg" href="#projects">Explore my work</a><a class="btn mg" id="rs" href="#contact">Download resume</a></div>
   </div>
+  <div class="sc"><span><i></i>Scroll to explore — 2026</span><span>Chennai, India</span></div>
+</section>
 
-  <h1 class="hero-title">
-    Sachin PJ<br>
-    <span class="grad-text">Visual Designer</span>
-  </h1>
-
-  <p class="hero-sub">UI/UX &amp; Graphic Designer crafting purposeful digital experiences — where research meets aesthetics meets function.</p>
-
-  <div class="hero-actions">
-    <a href="https://www.behance.net/sachinspage" target="_blank" class="btn-grad">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-      View Behance
-    </a>
-    <a href="mailto:sachinsachin0454@gmail.com" class="btn-ghost">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Get in Touch
-    </a>
-    <a href="https://www.linkedin.com/in/sachin-pj-5463b61bb/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
-  </div>
-
-  <div class="hero-stats">
+<section id="about" class="w">
+  <div class="ab">
+    <div><h2>More than just design.</h2></div>
     <div>
-      <div class="stat-num">3+</div>
-      <div class="stat-label">Years Experience</div>
-    </div>
-    <div>
-      <div class="stat-num">2</div>
-      <div class="stat-label">Companies</div>
-    </div>
-    <div>
-      <div class="stat-num">15+</div>
-      <div class="stat-label">Tools Mastered</div>
-    </div>
-    <div>
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Ideas / Pixel</div>
+      <p>I’m a multidisciplinary visual designer with 2.8 years of professional experience creating digital experiences, visual identities, marketing materials and FMCG packaging.</p>
+      <p class="dim">My approach combines creativity, usability and problem-solving. I enjoy transforming ideas into clear, meaningful and visually engaging experiences.</p>
+      <p class="dim">From designing user interfaces to developing product packaging and motion graphics, I work across different creative disciplines to bring ideas to life.</p>
+      <div class="stat"><b data-c="2.8">0</b><span>years of professional experience</span></div>
+      <div class="stat"><b data-c="7">0</b><span>creative project categories</span></div>
+      <div class="stat"><b data-c="3">0</b><span>professional experiences</span></div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <div class="ticker-item">Figma <span class="ticker-sep"></span> Adobe XD <span class="ticker-sep"></span> Photoshop <span class="ticker-sep"></span> Illustrator <span class="ticker-sep"></span> After Effects <span class="ticker-sep"></span> Protopie <span class="ticker-sep"></span> Spline 3D <span class="ticker-sep"></span> Blender <span class="ticker-sep"></span> Webflow <span class="ticker-sep"></span> Sketch <span class="ticker-sep"></span> Miro <span class="ticker-sep"></span> InVision <span class="ticker-sep"></span> Balsamiq <span class="ticker-sep"></span> Maze <span class="ticker-sep"></span> Affinity</div>
-    <div class="ticker-item">Figma <span class="ticker-sep"></span> Adobe XD <span class="ticker-sep"></span> Photoshop <span class="ticker-sep"></span> Illustrator <span class="ticker-sep"></span> After Effects <span class="ticker-sep"></span> Protopie <span class="ticker-sep"></span> Spline 3D <span class="ticker-sep"></span> Blender <span class="ticker-sep"></span> Webflow <span class="ticker-sep"></span> Sketch <span class="ticker-sep"></span> Miro <span class="ticker-sep"></span> InVision <span class="ticker-sep"></span> Balsamiq <span class="ticker-sep"></span> Maze <span class="ticker-sep"></span> Affinity</div>
-  </div>
-</div>
+<section id="projects" class="w">
+  <h2>Selected works.</h2>
+  <p class="dim">A selection of creative experiments, digital experiences and visual solutions.</p>
+  <div class="fl" id="fl" role="group" aria-label="Filter projects"></div>
+  <div id="fp" aria-live="polite"></div>
+  <div id="pl"></div>
+</section>
 
-<!-- ABOUT -->
-<section class="section section-alt" id="about">
-  <div class="chip">About Me</div>
-  <div class="about-grid">
-    <div>
-      <h2 class="section-headline fade-up">
-        Designing for humans,<br>not just <span class="grad-text">screens.</span>
-      </h2>
-    </div>
-    <div class="fade-up">
-      <div class="about-body">
-        <p>I'm a driven and detail-oriented UI/UX and Graphic Designer based in Chennai, Tamil Nadu. I blend visual craft with user empathy to create experiences that are both beautiful and deeply functional.</p>
-        <p>With a background in Electronics &amp; Communication Engineering and specialized training in UI/UX, I bring a unique analytical lens to every design challenge — from product systems to refined brand identities.</p>
-        <p>Currently looking for my next challenge where design thinking drives real product impact.</p>
-      </div>
-      <div class="about-tags">
-        <span class="tag">UX Research</span>
-        <span class="tag">Interaction Design</span>
-        <span class="tag">Branding</span>
-        <span class="tag">Motion Graphics</span>
-        <span class="tag">User Testing</span>
-        <span class="tag">Information Architecture</span>
-        <span class="tag">Prototyping</span>
-        <span class="tag">Visual Design</span>
-        <span class="tag">Typography</span>
-        <span class="tag">Color Theory</span>
-        <span class="tag">Story Boarding</span>
-        <span class="tag">Heuristic Evaluation</span>
-      </div>
-    </div>
+<section id="skills" class="w">
+  <h2>My creative toolkit.</h2>
+  <div class="sk" id="sk"></div>
+</section>
+
+<section id="workflow" class="w">
+  <h2>From idea to execution.</h2>
+  <div class="wf" id="wf"><div class="ln"></div></div>
+</section>
+
+<section id="experience" class="w">
+  <h2>Experience & journey.</h2>
+  <div class="ex">
+    <div class="xr"><div class="a">June 2023 – May 2025<br>Chennai</div><div class="b"><h3>Sachsruthi Pack Systems</h3><div class="dim">Visual Designer | Website & FMCG Product Designer</div><ul><li>Designed company website and digital product visuals.</li><li>Created FMCG packaging, labels and product creatives.</li><li>Designed brochures, catalogues, social media and marketing materials.</li></ul></div></div>
+    <div class="xr"><div class="a">June 2025 – December 2025<br>Bengaluru</div><div class="b"><h3>MachineMaze</h3><div class="dim">Visual Designer</div><ul><li>Designed digital and print creatives.</li><li>Created brochures and presentations.</li><li>Developed social media and promotional assets.</li><li>Created UI screens and visual assets using Figma and Adobe Creative Cloud.</li><li>Produced motion graphics and promotional videos using After Effects and Premiere Pro.</li><li>Used AI-assisted workflows for creative ideation.</li></ul></div></div>
+    <div class="xr"><div class="a">June 2026 – August 2026<br>Chennai</div><div class="b"><h3>Midaas Touch</h3><div class="dim">Graphic Designer</div><ul><li>Created social media creatives and advertisements.</li><li>Designed presentations and marketing materials.</li><li>Developed visual concepts and layouts.</li><li>Created digital and print-ready designs using Photoshop and Illustrator.</li></ul></div></div>
+  </div>
+  <div class="ed">
+    <div class="sg2"><h3>Education</h3><p>B.E. Electronics & Communication Engineering</p><span class="dim">Rajalakshmi Institute of Technology, Chennai · 2019–2023</span></div>
+    <div class="sg2"><h3>Certification</h3><p>UI/UX Design Course</p><span class="dim">Web D School · 2023</span></div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section class="section" id="experience">
-  <div class="chip">Experience</div>
-  <div class="exp-list">
-
-    <div class="exp-item fade-up">
-      <div class="exp-date">
-        <span class="exp-dot"></span>Jun 2025 – Nov 2025
-      </div>
-      <div>
-        <div class="exp-role">Graphic Designer</div>
-        <div class="exp-company">MachineMaze</div>
-        <div class="exp-desc">
-          <ul>
-            <li>Led creative design projects spanning branding, social media, and marketing visuals</li>
-            <li>Collaborated cross-functionally to create engaging UI elements and motion graphics</li>
-            <li>Supported video editing and promotional design deliverables end-to-end</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item fade-up">
-      <div class="exp-date">
-        <span class="exp-dot"></span>Jul 2023 – Jun 2025
-      </div>
-      <div>
-        <div class="exp-role">Graphic Designer</div>
-        <div class="exp-company">V-Multi Pack Systems · multipacksystems.in</div>
-        <div class="exp-desc">
-          <ul>
-            <li>Designed comprehensive branding systems including logo design and product packaging</li>
-            <li>Produced high-quality promotional materials, flyers, and product cover designs</li>
-            <li>Managed multiple design projects from concept to completion, meeting all deadlines</li>
-            <li>Built and maintained visual consistency across all brand touchpoints</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
+<section id="approach" class="w">
+  <h2>Design is how I think.</h2>
+  <div class="ap">
+    <div><b>Think</b><span class="dim">Understanding problems and discovering opportunities.</span></div>
+    <div><b>Create</b><span class="dim">Transforming ideas into meaningful visual experiences.</span></div>
+    <div><b>Deliver</b><span class="dim">Creating polished, functional and production-ready work.</span></div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section class="section section-alt" id="skills">
-  <div class="chip">Capabilities</div>
-  <div class="skills-grid">
-    <div class="skill-card fade-up">
-      <div class="skill-icon-wrap">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g1)" stroke-width="1.5">
-          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
-          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
-        </svg>
-      </div>
-      <div class="skill-title">UI / UX Design</div>
-      <div class="skill-tools">Wireframing · Prototyping · User Testing · Persona Creation · Task Analysis · Heuristic Evaluation · Story Boarding · Information Architecture</div>
+<section id="contact" class="w">
+  <h2>Have a project<br>in mind?</h2>
+  <p class="dim">Let’s create something meaningful together. I’m open to exciting opportunities, collaborations and creative challenges.</p>
+  <div class="ctas"><a class="btn p mg" href="#cf">Let’s work together</a><a class="btn mg" href="mailto:sachinsachin0454@gmail.com">Email me</a><a class="btn mg" id="rs2" href="#contact">Download resume</a></div>
+  <div class="cg">
+    <div class="cd">
+      <h3 style="margin-bottom:14px">Sachin PJ</h3>
+      <a href="tel:+919840463695">+91 9840463695</a>
+      <a href="mailto:sachinsachin0454@gmail.com">sachinsachin0454@gmail.com</a>
+      <a href="https://www.sachinpage.online" target="_blank" rel="noopener">www.sachinpage.online</a>
+      <span class="dim" style="display:block;padding:10px 0">Chennai, India</span>
+      <div id="so" class="ctas"></div>
     </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon-wrap">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g2)" stroke-width="1.5">
-          <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
-          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-        </svg>
-      </div>
-      <div class="skill-title">Design Tools</div>
-      <div class="skill-tools">Figma · Adobe XD · Balsamiq · Miro · Maze · InVision · Sketch · Protopie · Webflow · Spline 3D</div>
-    </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon-wrap">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g3)" stroke-width="1.5">
-          <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-      </div>
-      <div class="skill-title">Graphic Design</div>
-      <div class="skill-tools">Photoshop · Illustrator · After Effects · Lightroom · Premiere Pro · Blender · Affinity Designer · Trello</div>
-    </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon-wrap">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#g4)" stroke-width="1.5">
-          <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
-          <path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/>
-        </svg>
-      </div>
-      <div class="skill-title">Branding &amp; Identity</div>
-      <div class="skill-tools">Logo Design · Icon Systems · Typography · Color Theory · Brand Guidelines · Packaging · Marketing Collateral</div>
-    </div>
+    <form id="cf" novalidate>
+      <div><input name="name" placeholder="Name" aria-label="Name" autocomplete="name"><div class="er"></div></div>
+      <div><input name="email" type="email" placeholder="Email" aria-label="Email" autocomplete="email"><div class="er"></div></div>
+      <div><input name="subject" placeholder="Subject" aria-label="Subject"><div class="er"></div></div>
+      <div><textarea name="message" rows="5" placeholder="Message" aria-label="Message"></textarea><div class="er"></div></div>
+      <button class="btn p" type="submit">Send message</button>
+      <div class="er" id="fs" role="status"></div>
+    </form>
   </div>
 </section>
+<footer><span class="logo">SACHIN PJ<i>.</i></span><span>Designing with purpose. Creating with impact.</span><a href="#home" class="btn">Back to top</a><span id="fo"></span><span>© 2026 Sachin PJ. All Rights Reserved.</span></footer>
+</main>
 
-<!-- WORK -->
-<section class="section" id="work">
-  <div class="chip">Selected Work</div>
-  <h2 class="section-headline fade-up">
-    Craft that speaks <span class="grad-text">before words do.</span>
-  </h2>
+<article id="dt" aria-live="polite"></article>
+<div id="lb" role="dialog" aria-label="Image preview"><div class="pi"><div class="ph"><span></span></div></div></div>
 
-  <div class="project-grid">
-    <a href="https://www.behance.net/gallery/175215307/solidify-portfolio" target="_blank" class="project-card">
-      <div class="project-glow glow-violet"></div>
-      <div class="project-arrow">↗</div>
-      <div class="project-tag">UI/UX · Portfolio</div>
-      <div class="project-name">Solidify Portfolio</div>
-      <div class="project-desc">A comprehensive design portfolio showcasing end-to-end UX process and visual craft.</div>
-    </a>
-
-    <a href="https://www.multipacksystems.in/" target="_blank" class="project-card">
-      <div class="project-glow glow-blue"></div>
-      <div class="project-arrow">↗</div>
-      <div class="project-tag">Branding · Web</div>
-      <div class="project-name">V-Multi Pack Systems</div>
-      <div class="project-desc">Complete brand identity and web presence for a manufacturing and packaging company.</div>
-    </a>
-
-    <div class="project-card" style="cursor:default;">
-      <div class="project-glow glow-indigo"></div>
-      <div class="project-tag">Motion · Social Media</div>
-      <div class="project-name">Social Media Campaigns</div>
-      <div class="project-desc">Motion graphics and animated content for B2B and consumer brand campaigns across multiple platforms.</div>
-    </div>
-
-    <div class="project-card" style="cursor:default;">
-      <div class="project-glow glow-sky"></div>
-      <div class="project-tag">Product Design · Print</div>
-      <div class="project-name">Packaging &amp; Print</div>
-      <div class="project-desc">High-impact product packaging and print collateral designed to perform on shelf and online.</div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="section section-alt" id="education">
-  <div class="chip">Background</div>
-  <div class="edu-grid">
-    <div>
-      <div class="edu-group-label">Education</div>
-      <div class="edu-item fade-up">
-        <div class="edu-degree">B.E. Electronics &amp; Communication</div>
-        <div class="edu-school">Rajalakshmi Institute of Technology</div>
-        <div class="edu-meta">2019 – 2023 · CGPA 7.68</div>
-      </div>
-      <div class="edu-item fade-up">
-        <div class="edu-degree">Advanced UI/UX Designing</div>
-        <div class="edu-school">Web D School</div>
-        <div class="edu-meta">September 2022 – February 2023</div>
-      </div>
-    </div>
-    <div>
-      <div class="edu-group-label">Certifications</div>
-      <div class="edu-item fade-up">
-        <div class="edu-degree">Advanced UI/UX Designing</div>
-        <div class="edu-school">Web D School</div>
-        <div class="edu-meta">November 2022 – April 2023</div>
-      </div>
-      <div class="edu-item fade-up">
-        <div class="edu-degree">Secure Computer User (CSCU)</div>
-        <div class="edu-school">EC-Council</div>
-        <div class="edu-meta">January – February 2022</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<div class="contact-wrap" id="contact">
-  <div class="contact-orb"></div>
-  <h2 class="contact-headline fade-up">
-    Let's build<br><span class="grad-text">something great.</span>
-  </h2>
-  <p class="contact-sub fade-up">Open to full-time roles, freelance projects, and design collaborations worldwide.</p>
-  <div class="contact-btns fade-up">
-    <a href="mailto:sachinsachin0454@gmail.com" class="btn-grad">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      sachinsachin0454@gmail.com
-    </a>
-    <a href="https://www.behance.net/sachinspage" target="_blank" class="btn-ghost">Behance ↗</a>
-    <a href="https://www.linkedin.com/in/sachin-pj-5463b61bb/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <span>© 2025 Sachin PJ — UI/UX &amp; Visual Designer</span>
-  <span>Chennai, Tamil Nadu · +91 98404 63695</span>
-  <div style="display:flex;gap:20px;">
-    <a href="mailto:sachinsachin0454@gmail.com">Email</a>
-    <a href="https://www.behance.net/sachinspage" target="_blank">Behance</a>
-    <a href="https://www.linkedin.com/in/sachin-pj-5463b61bb/" target="_blank">LinkedIn</a>
-  </div>
-</footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-/* ── LOADER ── */
-const skills = [
-  "UI/UX Design",
-  "Graphic Design",
-  "Figma",
-  "Adobe Photoshop",
-  "Illustrator",
-  "After Effects",
-  "Motion Graphics",
-  "Brand Identity",
-  "Blender",
-  "Webflow"
+/* ===== EDITABLE CONFIG ===== */
+const CFG={
+  resume:"https://drive.google.com/file/d/1UkZV9MVZyzi-VZy1kHkxlLRzeXL0M099/view?usp=drive_link",            // e.g. "resume.pdf" once hosted; empty = opens an email request
+  linkedin:"www.linkedin.com/in/sachin662", behance:"https://www.behance.net/sachinspage",   // add your real profile URLs
+  formEndpoint:"",      // e.g. a Formspree URL; empty = opens the visitor’s email app
+  email:"sachinsachin0454@gmail.com"
+};
+/* Replace image:"" with a real image URL/data URI per project; links.* are external Behance etc. */
+const P=[
+ {id:"solidify",t:"SOLIDIFY",c:"UI/UX Design",cats:["UI/UX Design","Digital Design"],y:"",h:100,tools:"Figma, FigJam, Prototyping",d:"A digital platform concept connecting daily-wage workers with customers and businesses looking for skilled professionals and equipment rental services.",show:["Mobile app screens","User flows","Wireframes","High-fidelity UI","Dashboard","Booking experience"],cta:"View Case Study",wf:1,image:"solidify.png",link:"https://www.behance.net/gallery/175215307/solidify-portfolio"},
+
+ {id:"food-wave",t:"FOOD WAVE",c:"Digital Design / Product Design",cats:["Digital Design","Product Design","UI/UX Design"],y:"",h:30,tools:"Figma, Wireframing, Prototyping",d:"A donation-focused digital experience designed to help people discover nearby food donation locations and contribute towards reducing food waste.",show:["App interface","Donation journey","Location discovery","User experience","Mobile screen mockups"],cta:"View Project",wf:1,image:"foodwave.png",link:"https://www.behance.net/gallery/198884181/FOOD-DONATION-APP-UI-DESIGN"},
+
+ {id:"multipack-systems",t:"MULTIPACK SYSTEMS",c:"Print Design / Branding",cats:["Print Design","Digital Design"],y:"",h:210,tools:"Adobe Illustrator, Photoshop",d:"A visual communication and branding project for a food packaging machinery business, including marketing collateral and digital brand assets.",show:["Logo and identity","Brochures","Product catalogues","Business stationery","Marketing creatives","Website visuals"],cta:"View Project",image:"multipack.png",link:"https://www.behance.net/gallery/184585855/Product-Website"},
+
+ {id:"packaging-collection",t:"PRODUCT PACKAGING COLLECTION",c:"FMCG Product Design / Packaging Design",cats:["FMCG Product Design","Product Design","Print Design"],y:"",h:45,tools:"Adobe Illustrator, Photoshop",d:"A collection of FMCG packaging designs created for food products, focusing on visual identity, product communication, shelf appeal and print-ready layouts.",show:["Milk pouch designs","Masala packaging","Atta packaging","Food pouch designs","Packaging mockups","Print-ready artwork"],cta:"Explore Packaging",image:"fmcg.png",link:"https://www.behance.net/gallery/217695355/POWDER-POUCHES"},
+
+ {id:"finora",t:"FINORA — SAAS MOTION EXPERIENCE",c:"Motion Design",cats:["Motion Design","Digital Design"],y:"",h:270,tools:"After Effects, Premiere Pro, Illustrator",d:"A modern motion design concept showcasing a futuristic SaaS experience through typography, transitions, animated UI elements and visual storytelling.",show:["Motion graphics","Animated typography","UI transitions","2D animation","Video preview"],cta:"Watch Project",image:"finora.png",link:"https://www.behance.net/gallery/255525639/SAAS-MOTION-DESIGN-FINORA"},
+
+ {id:"visual-experiments",t:"VISUAL EXPERIMENTS",c:"logo Design / Visual Design",cats:["Poster Design","Digital Design"],y:"",h:330,tools:"Photoshop, Illustrator",d:"An exploration of creative direction, typography, composition, color, image manipulation and visual storytelling through poster design.",show:["Campaign posters","Promotional posters","Typography experiments","Digital compositions","Advertising visuals"],cta:"View Gallery",image:"branding.png",link:"https://www.behance.net/gallery/198631639/LOGO-BRANDING-MATRIXCODE"},
+
+ {id:"campaign-visuals",t:"CAMPAIGN VISUALS",c:"Digital Design / Campaign Design",cats:["Digital Design","Print Design"],y:"",h:15,tools:"Photoshop, Illustrator, Adobe Creative Suite",d:"A collection of promotional creatives, social media designs, advertisements, presentations and marketing visuals developed for different communication needs.",show:["Social media creatives","Digital advertisements","Promotional banners","Presentation designs","Marketing campaigns"],cta:"View Project",image:"spice.png",link:"https://www.behance.net/gallery/187010329/Masala-logo"},
+
+ {id:"coffee-motion",t:"COFFEE MOTION DESIGN",c:"Motion Design",cats:["Motion Design","Digital Design"],y:"",h:25,tools:"After Effects, Premiere Pro, Illustrator",d:"A motion design piece built around coffee, exploring animated typography, fluid transitions and visual storytelling.",show:["Motion graphics","Animated typography","Transitions","Video preview"],cta:"Watch Project",image:"cofee.png",link:"https://www.behance.net/gallery/257779509/Coffee-Ad-3D-Inspired-Motion-Graphics"},
+
+ {id:"horizon-phone",t:"HORIZON PHONE WEBSITE",c:"Website Design / Product Design",cats:["UI/UX Design","Digital Design","Product Design"],y:"",h:215,tools:"Figma, Prototyping",d:"A product website design for Horizon, a smartphone, focused on clear product storytelling, feature presentation and a responsive layout.",show:["Landing page","Product showcase","Feature sections","Responsive layouts"],cta:"View Project",wf:1,image:"Horizon Phone.png",link:"https://www.behance.net/gallery/248035743/Premium-Mobile-Landing-Page-UIUX-Design"},
+
+ {id:"employee-management",t:"EMPLOYEE MANAGEMENT WEB APP",c:"UI/UX Design / Web App",cats:["UI/UX Design","Digital Design"],y:"",h:190,tools:"Figma, Wireframing, Prototyping",d:"A web application design for managing employees, covering dashboards, records and everyday HR workflows.",show:["Dashboard","Employee records","User flows","High-fidelity UI"],cta:"View Case Study",wf:1,image:"workflow.png",link:"https://www.behance.net/gallery/256718285/WorkFlow-Employee-Management-Dashboard"},
+
+ {id:"ecommerce-checkout",t:"E-COMMERCE CHECKOUT PAGE",c:"UI/UX Design / E-commerce",cats:["UI/UX Design","Digital Design"],y:"",h:150,tools:"Figma, Prototyping",d:"A checkout page design for an e-commerce website, focused on a clear, simple and trustworthy purchase flow.",show:["Cart summary","Checkout steps","Payment layout","Responsive screens"],cta:"View Project",wf:1,image:"wellmart.png",link:"https://www.behance.net/gallery/256742123/WellMart-E-commerce-Shopping-Cart-UI"},
+
+ {id:"anime-ott",t:"ANIME OTT WEBSITE",c:"UI/UX Design / Web Design",cats:["UI/UX Design","Digital Design"],y:"",h:300,tools:"Figma, Prototyping",d:"A streaming website design for anime, covering content discovery, browsing and a watch experience.",show:["Home and browse pages","Title detail page","Player layout","Responsive screens"],cta:"View Project",wf:1,image:"araara.png",link:"https://www.behance.net/gallery/177763571/Anime-OTT-website"},
+
+ {id:"dmart-website",t:"D MART WEBSITE",c:"Website Design / UI/UX",cats:["UI/UX Design","Digital Design"],y:"",h:70,tools:"Figma, Prototyping",d:"A website design concept for an online grocery and retail shopping experience.",show:["Home page","Product listing","Product detail","Cart and checkout"],cta:"View Project",wf:1,image:"dmart.png",link:"https://www.behance.net/gallery/165132395/web-template"}
 ];
+const CATS=["All","Print Design","Digital Design","UI/UX Design","Motion Design","Poster Design","Product Design","FMCG Product Design"];
+const SK=[["UI/UX Design","UI Design,UX Design,Wireframing,Prototyping,User Flows,Responsive Design,Design Systems,Components,Auto Layout"],["Visual & Graphic Design","Graphic Design,Branding,Typography,Layout Design,Campaign Design,Art Direction,Social Media Design,Print Design,Digital Design"],["Motion & Video","Motion Graphics,2D Animation,Video Editing,Visual Effects"],["FMCG & Packaging","Packaging Design,Product Labels,FMCG Visual Design,Print-ready Artwork,Packaging Mockups"],["Data Analytics","SQL,Microsoft Excel,Power BI,Python,MySQL,Data Cleaning,Data Visualization,Data Analysis,Dashboard Creation,Statistical Analysis,Data Interpretation"],["AI & Creative Technology","Generative AI,AI-Assisted Design,AI Image Generation,Prompt Engineering,AI Image Editing"]];
+const TOOLS="Figma,Photoshop,Illustrator,After Effects,Premiere Pro,Adobe Firefly,ChatGPT,Webflow,Blender,Affinity,Balsamiq,Sketch,Miro,ProtoPie,Maze,HTML,CSS,Python,MySQL,Power BI";
+const WF=[["Discover","Understand the brief, audience, goals and requirements."],["Research","Explore references, competitors, visual directions and opportunities."],["Ideate","Create concepts, sketches, wireframes and visual explorations."],["Design","Develop layouts, typography, colors, interfaces and creative assets."],["Prototype & animate","Create interactive prototypes, motion graphics and transitions."],["Refine","Review, test, improve and polish the final output."],["Deliver","Prepare final digital assets, presentations and production-ready files."]];
 
-const DURATION = 5000;
-const skillEl = document.getElementById("loaderSkill");
-const bar = document.getElementById("progressBar");
-const loader = document.getElementById("loader");
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const MOB=()=>innerWidth<800;
+const ph=(p,l)=>p.image?`<img src="${p.image}" alt="${p.t} — ${l}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`:`<div class="ph" style="--h:${p.h}"><span>Placeholder — replace with ${l}</span></div>`;
+const num=i=>String(i+1).padStart(2,"0");
 
-let idx = 0;
-const interval = setInterval(() => {
-  idx++;
-  if (idx < skills.length) {
-    skillEl.classList.add("fade-out");
-    setTimeout(() => {
-      skillEl.textContent = skills[idx];
-      skillEl.classList.remove("fade-out");
-    }, 200);
-  }
-}, DURATION / skills.length);
+/* ===== build static content ===== */
+$("#fl").innerHTML=CATS.map((c,i)=>`<button class="${i?"":"on"}" data-c="${c}">${c}</button>`).join("")+`<button class="rset" data-c="All">Reset view</button>`;
+$("#pl").innerHTML=P.map((p,i)=>`<a class="pj pi" href="#project-${p.id}" data-i="${i}" data-cats="${p.cats.join("|")}" aria-label="${p.t} — ${p.c}">${ph(p,"project preview image")}<div class="ov"><b>${num(i)}</b><h3>${p.t}</h3><small>${p.c}</small><i>View project</i></div></a>`).join("");
+$("#sk").innerHTML=SK.map(([h,l])=>`<div class="sg2"><h3>${h}</h3><ul>${l.split(",").map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("")+`<div class="sg2 sw" style="grid-column:1/-1"><h3>Software & tools</h3><ul>${TOOLS.split(",").map(x=>`<li>${x}</li>`).join("")}</ul></div>`;
+$("#wf").insertAdjacentHTML("beforeend",WF.map(([h,d],i)=>`<div class="st2" data-n="${num(i)}"><h3>${h}</h3><p class="dim">${d}</p></div>`).join(""));
+const socials=[["LinkedIn",CFG.linkedin],["Behance",CFG.behance]].filter(s=>s[1]);
+$("#so").innerHTML=$("#fo").innerHTML=socials.map(([n,u])=>`<a class="btn" href="${u}" target="_blank" rel="noopener">${n}</a>`).join("");
+const rsHref=CFG.resume||`mailto:${CFG.email}?subject=Resume%20request`;
+["#rs","#rs2"].forEach(s=>{const a=$(s);a.href=rsHref;if(CFG.resume)a.setAttribute("download","")});
 
-// Smooth progress bar via rAF
-const start = performance.now();
-function animateBar(now) {
-  const pct = Math.min(((now - start) / DURATION) * 100, 100);
-  bar.style.width = pct + "%";
-  if (pct < 100) requestAnimationFrame(animateBar);
+/* ===== nav ===== */
+const nv=$("#nv");addEventListener("scroll",()=>nv.classList.toggle("s",scrollY>40),{passive:true});
+$("#bg").onclick=()=>{const o=$("#lk").classList.toggle("o");$("#bg").setAttribute("aria-expanded",o);$("#bg").textContent=o?"Close":"Menu"};
+$$("#lk a").forEach(a=>a.addEventListener("click",()=>{$("#lk").classList.remove("o");$("#bg").textContent="Menu"}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$("#lk a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}}),{rootMargin:"-45% 0px -50% 0px"});
+$$("main section[id]").forEach(s=>io.observe(s));
+
+/* ===== filters ===== */
+let cur="All",sel=null;
+function panel(){const f=$("#fp");if(!sel){f.style.display="none";f.innerHTML="";return}
+ const p=P[+sel.dataset.i];f.style.display="grid";
+ f.innerHTML=`<div class="pi">${ph(p,"project preview image")}</div><div><div class="tg">${p.c}</div><h3>${p.t}</h3><p class="dim">${p.d}</p><div class="tg">Tools: ${p.tools}${p.y?" · Year: "+p.y:""}</div><div class="ctas" style="margin-top:10px"><a class="btn p" href="#project-${p.id}">View Case Study</a>${p.link?`<a class="btn" href="${p.link}" target="_blank" rel="noopener">View on Behance</a>`:""}</div></div>`;
+ gsap.from(f,{opacity:0,y:20,duration:.5})}
+function focusCat(c,pick){cur=c;const all=c==="All",cards=$$(".pj"),m=cards.filter(el=>all||el.dataset.cats.split("|").includes(c)),d=innerWidth>=1000?1:0;
+ $$("#fl button").forEach(x=>x.classList.toggle("on",x.dataset.c===c&&!x.classList.contains("rset")));$("#fl").classList.toggle("f",!all);
+ sel=all?null:(pick&&m.includes(pick)?pick:m[0]);panel();
+ cards.forEach(el=>{const on=all||m.includes(el);
+  const to=all?{z:0,scale:1,opacity:1,rotationX:0,rotationY:0}:el===sel?{z:d*80,scale:1.02,opacity:1}:on?{z:d*40,scale:1,opacity:1}:{z:d*-260,scale:.86,opacity:.35};
+  gsap.to(el,{...to,duration:RM?0:.8,ease:"power3.inOut",overwrite:true});el.classList.toggle("sel",!all&&el===sel)});
+ setTimeout(()=>window.ScrollTrigger&&ScrollTrigger.refresh(),900)}
+$("#fl").onclick=e=>{const b=e.target.closest("button");if(b)focusCat(b.dataset.c)};
+$("#pl").addEventListener("click",e=>{const a=e.target.closest(".pj");if(a&&cur!=="All"&&sel!==a&&a.style.opacity!=="0.35"&&+getComputedStyle(a).opacity>.5){e.preventDefault();focusCat(cur,a)}});
+if(matchMedia("(pointer:fine)").matches&&!RM)$$(".pj").forEach(el=>{el.addEventListener("mousemove",e=>{if(cur!=="All")return;const r=el.getBoundingClientRect();gsap.to(el,{rotationY:((e.clientX-r.left)/r.width-.5)*8,rotationX:-((e.clientY-r.top)/r.height-.5)*8,duration:.3,overwrite:"auto"})});el.addEventListener("mouseleave",()=>{if(cur=="All")gsap.to(el,{rotationX:0,rotationY:0,duration:.3})})});
+
+/* ===== detail pages ===== */
+const TXT="Editable placeholder — replace this with your own write-up for this stage of the project.";
+function detail(id){
+ const i=P.findIndex(p=>p.id===id);if(i<0)return false;const p=P[i],pr=P[(i+P.length-1)%P.length],nx=P[(i+1)%P.length];
+ const secs=[["Project overview",p.d],["Problem statement",TXT],["Objectives",TXT],["Design process",TXT],["Research & inspiration",TXT],["Initial concepts",TXT]];
+ if(p.wf)secs.push(["Wireframes",TXT]);
+ secs.push(["Design development",TXT],["Final designs","Showcase: "+p.show.join(", ")+"."],["Tools used",p.tools]);
+ $("#dt").innerHTML=`<a class="btn" href="#projects">← Back to all projects</a>
+ <div class="tg" style="margin-top:50px">${p.c}</div><h2 style="max-width:14ch">${p.t}</h2>
+ <div class="pi" style="margin:30px 0 20px">${ph(p,"hero image")}</div>
+ ${secs.map(([h,t])=>`<div class="ds"><h3>${h}</h3><div><p class="dim">${t}</p></div></div>`).join("")}
+ ${p.link?`<div class="ctas"><a class="btn p" href="${p.link}" target="_blank" rel="noopener">View on Behance</a></div>`:""}
+ <div class="ds"><h3>Image gallery</h3><div style="grid-column:4/13" class="gal">${[1,2,3,4,5,6].map(n=>`<button data-l="gallery image ${n}" aria-label="Open gallery image ${n}"><div class="pi" style="border:0;aspect-ratio:4/3;border-radius:0">${ph(p,"gallery image "+n)}</div></button>`).join("")}</div></div>
+ <div class="pn"><a class="btn" href="#project-${pr.id}">← Previous: ${pr.t}</a><a class="btn p" href="#project-${nx.id}">Next: ${nx.t} →</a></div>`;
+ return true}
+$("#dt").addEventListener("click",e=>{const b=e.target.closest(".gal button");if(!b)return;const pj=P.find(p=>"#project-"+p.id===location.hash);
+ $("#lb .pi").innerHTML=ph(pj,b.dataset.l);$("#lb").classList.add("o")});
+$("#lb").onclick=()=>$("#lb").classList.remove("o");
+addEventListener("keydown",e=>{if(e.key==="Escape")$("#lb").classList.remove("o")});
+function route(){const h=location.hash;
+ if(h.startsWith("#project-")&&detail(h.slice(9))){document.body.classList.add("det");scrollTo(0,0);document.title=P.find(p=>"#project-"+p.id===h).t+" — Sachin PJ"}
+ else{const was=document.body.classList.contains("det");document.body.classList.remove("det");document.title="Sachin PJ — Visual & UI/UX Designer";
+  if(was){setTimeout(()=>{const t=h&&$(h);t?t.scrollIntoView():scrollTo(0,0);window.ScrollTrigger&&ScrollTrigger.refresh()},30)}}}
+addEventListener("hashchange",route);
+
+/* ===== form ===== */
+$("#cf").addEventListener("submit",async e=>{e.preventDefault();const f=e.target,d=Object.fromEntries(new FormData(f)),ok=[];let bad=0;
+ [["name",v=>v.trim().length>1,"Enter your name."],["email",v=>/^\S+@\S+\.\S+$/.test(v),"Enter a valid email address."],["subject",v=>v.trim().length>2,"Enter a subject."],["message",v=>v.trim().length>9,"Write at least 10 characters."]].forEach(([k,fn,m])=>{const er=f.elements[k].parentNode.querySelector(".er");er.textContent=fn(d[k])?"":m;if(!fn(d[k]))bad++});
+ if(bad)return;const s=$("#fs");
+ if(CFG.formEndpoint){try{const r=await fetch(CFG.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)});if(!r.ok)throw 0;s.textContent="Message sent. Thank you!";f.reset();return}catch(_){s.textContent="Sending failed. Opening your email app instead."}}
+ location.href=`mailto:${CFG.email}?subject=${encodeURIComponent(d.subject)}&body=${encodeURIComponent(d.message+"\n\n— "+d.name+" ("+d.email+")")}`;
+ if(!s.textContent)s.textContent="Opening your email app to send this message."});
+
+/* ===== cursor + magnetic ===== */
+if(matchMedia("(pointer:fine)").matches&&!RM){const cu=$("#cu");addEventListener("mousemove",e=>{cu.style.transform=`translate(${e.clientX}px,${e.clientY}px)`});
+ document.addEventListener("mouseover",e=>cu.classList.toggle("h",!!e.target.closest("a,button")));
+ $$(".mg").forEach(b=>{b.addEventListener("mousemove",e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener("mouseleave",()=>b.style.transform="")})}
+
+/* ===== 3D sculpture ===== */
+const S={x:0,y:0,z:0,s:1,spin:0,mx:0,my:0,sp:0};let G,R,Sc,Cm,ready3d=false;
+function init3D(){
+ try{const cv=$("#gl");R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:!MOB()});R.setPixelRatio(Math.min(devicePixelRatio,MOB()?1.5:2));
+ Sc=new THREE.Scene();Cm=new THREE.PerspectiveCamera(40,1,.1,50);Cm.position.z=8;
+ const c=document.createElement("canvas");c.width=512;c.height=256;const x=c.getContext("2d"),g=x.createLinearGradient(0,0,0,256);g.addColorStop(0,"#dfe6ee");g.addColorStop(.45,"#303640");g.addColorStop(.5,"#0b0b0d");g.addColorStop(1,"#1b2210");x.fillStyle=g;x.fillRect(0,0,512,256);
+ x.fillStyle="#fff";x.fillRect(60,40,90,30);x.fillRect(300,60,140,16);x.fillStyle="#B8FF5C";x.fillRect(220,150,160,12);x.fillRect(20,180,60,40);
+ const t=new THREE.CanvasTexture(c);t.mapping=THREE.EquirectangularReflectionMapping;const pm=new THREE.PMREMGenerator(R);Sc.environment=pm.fromEquirectangular(t).texture;
+ G=new THREE.Group();Sc.add(G);
+ const chrome=new THREE.MeshStandardMaterial({color:0xffffff,metalness:1,roughness:.12}),glass=new THREE.MeshStandardMaterial({color:0xaad4ff,metalness:.2,roughness:0,transparent:true,opacity:.55}),wire=new THREE.MeshBasicMaterial({color:0xB8FF5C,wireframe:true,transparent:true,opacity:.5});
+ const tor=new THREE.Mesh(new THREE.TorusGeometry(1.5,.45,48,128),chrome);tor.rotation.x=1.1;G.add(tor);
+ const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(.5,.14,100,16),chrome);G.add(knot);
+ [[2.2,1.1,.4,.38],[-2,-1,.8,.28],[.8,-1.9,-.6,.22]].forEach(([a,b,d,r])=>{const m=new THREE.Mesh(new THREE.SphereGeometry(r,32,32),glass);m.position.set(a,b,d);G.add(m)});
+ const ico=new THREE.Mesh(new THREE.IcosahedronGeometry(2.3,1),wire);G.add(ico);
+ const oct=new THREE.Mesh(new THREE.OctahedronGeometry(.4),chrome);oct.position.set(-1.9,1.6,-.4);G.add(oct);
+ const ring=new THREE.LineLoop(new THREE.RingGeometry(2.9,2.905,128).setAttribute?new THREE.RingGeometry(2.9,2.91,128):null,new THREE.LineBasicMaterial({color:0xB8FF5C,transparent:true,opacity:.6}));G.add(ring);
+ const n=MOB()?120:300,pa=new Float32Array(n*3);for(let i=0;i<n*3;i++)pa[i]=(Math.random()-.5)*8;
+ const pts=new THREE.Points(new THREE.BufferGeometry().setAttribute("position",new THREE.BufferAttribute(pa,3)),new THREE.PointsMaterial({color:0xB8FF5C,size:.03}));G.add(pts);
+ Sc.add(new THREE.DirectionalLight(0xffffff,1.2));
+ const rs=()=>{R.setSize(innerWidth,innerHeight,false);Cm.aspect=innerWidth/innerHeight;Cm.updateProjectionMatrix();rest()};
+ addEventListener("resize",rs);rs();
+ addEventListener("pointermove",e=>{S.mx=e.clientX/innerWidth-.5;S.my=e.clientY/innerHeight-.5},{passive:true});
+ addEventListener("scroll",()=>{S.sp=scrollY/innerHeight},{passive:true});
+ let k=0;const loop=()=>{requestAnimationFrame(loop);if(document.body.classList.contains("det")||(S.sp>1.6&&$("#gl").classList.contains("done")))return;
+  k+=.005;S.spin+=RM?0:.004;G.rotation.y=S.spin+S.mx*.8+S.sp*1.6;G.rotation.x=S.my*.5+S.sp*.6;
+  tor.rotation.z=k;knot.rotation.x=k*2;ico.rotation.y=-k;oct.rotation.y=k*3;pts.rotation.y=k*.3;
+  G.position.set(S.x,S.y+Math.sin(k*3)*.15,S.z);G.scale.setScalar(S.s);R.render(Sc,Cm)};loop();ready3d=true}catch(e){console.warn("WebGL unavailable",e);$("#gl").style.display="none"}}
+function heroPos(){const w=Math.tan(Math.PI*20/180)*8*Cm.aspect;return MOB()?{x:0,y:2.2,s:.55}:{x:w*.55,y:0,s:.95}}
+function rest(){const h=heroPos();if(S.hero){S.x=h.x;S.y=h.y;S.s=h.s}}
+$("#gl").style.opacity=1;
+
+/* ===== loader (real asset progress + timeout) ===== */
+let prog=0,tasks={fonts:0,three:0,hero:0};const upd=()=>{prog=(tasks.fonts+tasks.three+tasks.hero)/3};
+const seen=(()=>{try{return sessionStorage.getItem("sp_seen")}catch(_){return null}})();
+const ldDone=()=>{$("#ld").remove();$("#ldt").remove();$("#gl").classList.add("done");document.body.style.overflow="";initScroll();route();try{sessionStorage.setItem("sp_seen","1")}catch(_){}};
+function startLoader(){
+ if(location.hash.startsWith("#project-")){$("#ld").remove();$("#ldt").remove();$("#gl").style.display="none";initScroll();route();return}
+ document.body.style.overflow="hidden";
+ Promise.all([document.fonts?document.fonts.ready:0]).then(()=>{tasks.fonts=1;upd()});
+ const fin=()=>{tasks.three=1;upd()};
+ if(window.THREE){init3D();fin()}else{tasks.three=1;$("#gl").style.display="none"}
+ tasks.hero=1;upd();
+ let ass=false;setTimeout(()=>ass=true,4500); /* timeout fallback */
+ const bar=$("#lb2"),pc=$("#pc"),shown={v:0};
+ const t=gsap.timeline();
+ if(!RM&&ready3d){S.s=.01;t.to(S,{s:1.1,duration:1.6,ease:"power3.out"},.8)}
+ if(ready3d)Object.assign(S,{x:0,y:0,z:0});
+ const words=["Think","Explore","Experiment","Design","Create"],w=$("#ldw");
+ const spd=seen?.12:1;
+ words.forEach((word,i)=>{t.add(()=>{$("#lds").textContent="0"+(i+1)+" — "+word.toUpperCase();w.innerHTML=[...word].map(c=>`<span style="display:inline-block">${c}</span>`).join("");gsap.from(w.children,{yPercent:110,opacity:0,stagger:.03,duration:.5,ease:"power3.out"})},(1.2+i*.65)*spd)});
+ t.add(()=>{gsap.to(w,{opacity:0,duration:.3});gsap.to($("#lds"),{opacity:0,duration:.3});gsap.to($("#ldn"),{opacity:1,y:0,duration:.8});if(ready3d)gsap.to(S,{z:-1.5,duration:1})},(4.6)*spd);
+ t.add(()=>{},(5.6)*spd);
+ const finish=()=>{
+  if(RM||!ready3d){gsap.to("#ldt,#ld",{opacity:0,duration:.4,onComplete:()=>{S.hero=1;ldDone();ready3d&&rest()}});return}
+  gsap.to(S,{z:5,duration:.9,ease:"power3.in"});
+  gsap.to("#ldt",{opacity:0,duration:.5});
+  gsap.to("#ld",{clipPath:"circle(0% at 50% 50%)",duration:1.1,ease:"power3.inOut",delay:.2,onComplete:()=>{
+   S.hero=1;const h=heroPos();S.z=-4;S.s=h.s;S.x=h.x;S.y=h.y;$("#gl").classList.add("done");
+   gsap.to(S,{z:0,duration:1.4,ease:"expo.out",onComplete:ldDone})}})};
+ const tick=()=>{shown.v+=(prog*100-shown.v)*.12;if(ass&&prog<1){tasks.fonts=tasks.three=tasks.hero=1;upd()}
+  const v=Math.round(shown.v);bar.style.width=v+"%";pc.textContent=v+"%";
+  if(shown.v>99.4&&t.time()>=t.duration()-.01){finish();return}requestAnimationFrame(tick)};
+ tick();
 }
-requestAnimationFrame(animateBar);
-
-// Hide loader after duration
-setTimeout(() => {
-  clearInterval(interval);
-  loader.classList.add("hidden");
-}, DURATION);
-
-/* ── SCROLL ANIMATIONS ── */
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      e.target.style.transitionDelay = (i * 90) + "ms";
-      e.target.classList.add("visible");
-    }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll(".fade-up").forEach(el => obs.observe(el));
+function initScroll(){
+ if(!window.gsap||RM)return;gsap.registerPlugin(ScrollTrigger);
+ const mm=gsap.matchMedia();
+ ScrollTrigger.create({trigger:"#pl",start:"top 85%",once:true,onEnter:()=>{if(cur==="All")gsap.from(".pj",{opacity:0,y:40,z:innerWidth>=1000?-120:0,stagger:.07,duration:.8,ease:"power3.out",clearProps:"opacity,y,z"})}});
+ $$(".stat b").forEach(b=>{const v=+b.dataset.c;ScrollTrigger.create({trigger:b,start:"top 90%",once:true,onEnter:()=>{const o={n:0};gsap.to(o,{n:v,duration:1.4,onUpdate:()=>b.textContent=(v%1?o.n.toFixed(1):Math.round(o.n))+"+"})}})});
+ gsap.to(".wf .ln",{height:()=>$(".wf").offsetHeight-60,ease:"none",scrollTrigger:{trigger:".wf",start:"top 70%",end:"bottom 60%",scrub:true}});
+ gsap.utils.toArray(".st2,.xr,.sg2,.ap div").forEach(e=>gsap.from(e,{opacity:0,y:30,duration:.7,scrollTrigger:{trigger:e,start:"top 90%",once:true}}));
+}
+addEventListener("load",()=>{if(!window.gsap){$("#ld").remove();$("#ldt").remove();document.body.style.overflow="";route();return}startLoader()});
+if(RM)document.addEventListener("DOMContentLoaded",()=>{});
 </script>
-
 </body>
 </html>
