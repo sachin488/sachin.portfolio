@@ -152,6 +152,80 @@ body.det main{display:none}body.det #dt{display:block}body.det #gl{display:none}
 #cu.h{width:46px;height:46px;margin:-23px}
 @media(pointer:coarse){#cu{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+html{overflow-x:clip;-webkit-text-size-adjust:100%}
+nav{padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:max(var(--pad),env(safe-area-inset-right,0px))}
+.cd a,.xr h3,.sg2 p{overflow-wrap:anywhere}
+.btn,.fl button,#bg{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+ 
+/* tablets / large phones */
+@media(max-width:900px){
+  .w{padding-top:clamp(56px,12vw,100px);padding-bottom:clamp(56px,12vw,100px)}
+  .ab{gap:24px}
+  .cg{gap:28px}
+  .ap div{min-height:220px;padding:26px}
+  .sg2{padding:22px}
+  .ds{padding:26px 0;gap:12px}
+  .ds .gal{grid-column:1/13!important} /* gallery had an inline column that squeezed it on phones */
+  .xr{padding:26px 0;gap:8px}
+  #fp{padding:14px;gap:20px}
+}
+ 
+/* phones */
+@media(max-width:600px){
+  body{font-size:15.5px}
+  h2{font-size:clamp(2rem,10.5vw,3rem)}
+  #contact h2{font-size:clamp(2.2rem,11.5vw,3.4rem)}
+  #home{padding:104px var(--pad) 96px}
+  .hc h1{font-size:clamp(2rem,10.4vw,3rem)}
+  .id{font-size:11px;letter-spacing:.12em;line-height:1.7}
+  .ctas{gap:10px}
+  .ctas .btn{flex:1 1 100%;justify-content:center}
+  .btn{padding:14px 22px;min-height:46px}
+  .sc{bottom:18px;font-size:10px;letter-spacing:.14em}
+  .sc span:last-child{display:none}
+  .stat{gap:12px;padding:16px 0}
+  .ov{padding:36px 14px 12px}
+  .ph span{font-size:11px;padding:6px 12px}
+  .wf{padding-left:50px}
+  .wf::before,.wf .ln{left:15px}
+  .st2::before{left:-50px;width:32px;height:32px;font-size:11px}
+  .st2 h3{font-size:1.4rem}
+  .sk{grid-template-columns:1fr}
+  .ed{margin-top:34px}
+  .gal{gap:10px}
+  .pn{flex-direction:column;margin-top:40px}
+  .pn .btn{justify-content:center;text-align:center}
+  #dt{padding:96px var(--pad) 56px}
+  #lb{padding:16px}
+  footer{flex-direction:column;align-items:flex-start;gap:14px;padding:32px var(--pad)}
+  footer .btn{align-self:stretch;justify-content:center}
+  #ldt{padding:8vh var(--pad)}
+  #ldw{font-size:clamp(2.2rem,13vw,3.5rem)}
+  #ldn b{font-size:clamp(2.6rem,16vw,4.5rem)}
+  #ldn span{font-size:11px;letter-spacing:.12em}
+}
+ 
+/* menu overlay: scrollable on short screens, smaller type on small phones */
+@media(max-width:1100px){
+  .links{overflow-y:auto;padding-top:calc(90px + env(safe-area-inset-top,0px));padding-bottom:40px}
+}
+@media(max-width:560px){
+  .links{font-size:clamp(1.7rem,8.5vw,2.2rem);gap:14px}
+}
+ 
+/* landscape phones */
+@media(max-height:480px) and (orientation:landscape){
+  #home{align-items:center;padding-top:90px;padding-bottom:70px}
+  .hc h1{font-size:clamp(1.8rem,6vw,2.8rem)}
+  .links{font-size:1.4rem;gap:8px}
+}
+ 
+/* very small screens */
+@media(max-width:360px){
+  :root{--pad:16px}
+  .logo{font-size:17px}
+  .hc h1{font-size:1.9rem}
+}
 </style>
 </head>
 <body>
